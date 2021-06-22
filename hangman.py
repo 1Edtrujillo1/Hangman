@@ -40,6 +40,8 @@ def main():
     already_guessed = []
     play_game = ""
 
+# start game
+
 
 def play_loop():
 
@@ -58,6 +60,35 @@ def play_loop():
             exit()
 
 
-play_loop()
+def hangman():
 
-#main()
+    global word
+    global already_guessed
+    global display
+
+    guess = input("This is the Hangman Word: " + display +
+                  " Enter your guess: \n").strip()
+
+    if guess in word:
+
+        already_guessed.extend([guess])
+        index = word.find(guess)
+
+        word = word[:index] + "_" + word[index + 1:]
+        display = display[:index] + guess + display[index + 1:]
+
+    elif guess in already_guessed:
+        print("Try another letter.")
+
+    elif len(guess != 1):
+        print("Try a letter \n")
+        hangman()
+
+    else:
+        count += 1
+
+
+
+word
+main()
+hangman()
