@@ -22,30 +22,17 @@ def main():
     print("\n Hello " + name + "\n The game is about to start." + "\n Good Luck!")
     time.sleep(2)
 
-    global word
-    global length
-    global count
-    global display
-    global already_guessed
-    global play_game
-
     word_to_guess = ["january", "border", "image", "film",
                      "promise", "kids", "lungs", "doll",
                      "rhyme", "damage", "plants"]
 
-    word = random.choice(word_to_guess)
-    length = len(word)
-    count = 0
-    display = "_"*length
-    already_guessed = []
-    play_game = ""
+    global word, length, count, display, already_guessed
 
-# start game
+    word = random.choice(word_to_guess)
+    length, count, display, already_guessed = len(word), 0, "_"*len(word), []
 
 
 def play_loop():
-
-    global play_game
 
     play_game = input("Do You want to play again? y = yes, n = no \n")
 
@@ -58,6 +45,10 @@ def play_loop():
             print("\n Thanks for Playing!" + "\n Never come back!" +
                   "\n Love You.")
             exit()
+
+
+# play_loop()
+# main()
 
 
 def hangman():
