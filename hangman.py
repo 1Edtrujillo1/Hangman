@@ -2,7 +2,7 @@
 
 import random
 import time
-
+#import sys
 
 # 1.0 Starting the game ----
 
@@ -14,12 +14,30 @@ import time
 # 3.0 Run program passing the function ----
 
 # define global variables for the game.
+def play_loop():
+
+    play_game = input("Do You want to play? y = yes, n = no \n")
+
+    while play_game not in ["y", "Y", "n", "N"]:
+        play_game = input("Do You want to play? y = yes, n = no \n")
+
+        if play_game == "y":
+
+            time.sleep(1)
+            main()
+            time.sleep(2)
+            hangman()
+        elif play_game == "n":
+            print("\n Never come back!" + "\n Love You.")
+            exit()
+
+
 def main():
 
     print("Welcome to Hangman game!")
     time.sleep(3)
     name = input("Enter your name: ")
-    print("\n Hello " + name + "\n The game is about to start." + "\n Good Luck!")
+    print("\n Hello " + name + "\n The game is about to start." + "\n Good Luck! \n")
     time.sleep(2)
 
     word_options = ["january", "border", "image", "film",
@@ -31,24 +49,6 @@ def main():
     word = random.choice(word_options)
     length, count, display, already_guessed, word_to_guess = len(word), 0, \
         "_"*len(word), [], word
-
-
-def play_loop():
-
-    play_game = input("Do You want to play again? y = yes, n = no \n")
-
-    while play_game not in ["y", "Y", "n", "N"]:
-        play_game = input("Do You want to play again? y = yes, n = no \n")
-
-        if play_game == "y":
-            time.sleep(1)
-            main()
-            time.sleep(2)
-            hangman()
-        elif play_game == "n":
-            print("\n Thanks for Playing!" + "\n Never come back!" +
-                  "\n Love You.")
-            exit()
 
 
 def hangman():
@@ -151,9 +151,5 @@ def hangman():
         hangman()
 
 
-'lungs'
-# word
-# already_guessed
-# word_to_guess
-main()
-hangman()
+#sys.modules[__name__].__dict__.clear()
+play_loop()
