@@ -1,7 +1,5 @@
 # 0.0 Import modules ----
 
-import copy
-import re
 import random
 import time
 
@@ -43,7 +41,10 @@ def play_loop():
         play_game = input("Do You want to play again? y = yes, n = no \n")
 
         if play_game == "y":
+            time.sleep(1)
             main()
+            time.sleep(2)
+            hangman()
         elif play_game == "n":
             print("\n Thanks for Playing!" + "\n Never come back!" +
                   "\n Love You.")
@@ -138,17 +139,21 @@ def hangman():
                   "__|__\n")
             print("Wrong guess. " + str(limit-count) + "guesses remain. \n" +
                   "The word was: " + word_to_guess)
+            time.sleep(1)
+            play_loop()
 
     if word == '_'*length:
         print("Well done! You win!! \n")
         time.sleep(1)
+        play_loop()
+
     elif count != limit:
         hangman()
 
 
+'lungs'
 # word
 # already_guessed
 # word_to_guess
 main()
 hangman()
-play_loop()
