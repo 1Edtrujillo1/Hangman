@@ -2,10 +2,9 @@
 
 import random
 import time
-#import sys
+# import sys
 
 # 1.0 Starting the game ----
-
 
 # 1.0 Functions with specific global arguments ----
 
@@ -14,6 +13,8 @@ import time
 # 3.0 Run program passing the function ----
 
 # define global variables for the game.
+
+
 def play_loop():
 
     play_game = input("Do You want to play? y = yes, n = no \n")
@@ -79,67 +80,61 @@ def hangman():
     else:
         count += 1
 
-        if count == 1:
-            time.sleep(1)
-            print("   _____ \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "__|__\n")
-            print("Wrong guess. " + str(limit-count) + " guesses remain. \n")
+        counted = list(range(6))[1:]
+        incorrect = [("   _____ \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "__|__\n"),
+                     ("   _____ \n"
+                      "  |     | \n"
+                      "  |     |\n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "__|__\n"),
+                     ("   _____ \n"
+                      "  |     | \n"
+                      "  |     |\n"
+                      "  |     | \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "__|__\n"),
+                     ("   _____ \n"
+                      "  |     | \n"
+                      "  |     |\n"
+                      "  |     | \n"
+                      "  |     O \n"
+                      "  |      \n"
+                      "  |      \n"
+                      "__|__\n"),
+                     ("   _____ \n"
+                      "  |     | \n"
+                      "  |     |\n"
+                      "  |     | \n"
+                      "  |     O \n"
+                      "  |    /|\ \n"
+                      "  |    / \ \n"
+                      "__|__\n")]
 
-        elif count == 2:
-            time.sleep(1)
-            print("   _____ \n"
-                  "  |     | \n"
-                  "  |     |\n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "__|__\n")
-            print("Wrong guess. " + str(limit-count) + " guesses remain. \n")
+        incorrect_message = ["Wrong guess. " + str(limit-count) +
+                             " guesses remain. \n" for i in range(len(counted))]
+        incorrect_message[-1] = incorrect_message[-1] + \
+            "The word was: " + word_to_guess
 
-        elif count == 3:
+        if count in counted:
             time.sleep(1)
-            print("   _____ \n"
-                  "  |     | \n"
-                  "  |     |\n"
-                  "  |     | \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "__|__\n")
-            print("Wrong guess. " + str(limit-count) + " guesses remain. \n")
+            print({counted[i]: incorrect[i]
+                  for i in range(len(counted))}[count])
+            print({counted[i]: incorrect_message[i]
+                  for i in range(len(counted))}[count])
 
-        elif count == 4:
-            time.sleep(1)
-            print("   _____ \n"
-                  "  |     | \n"
-                  "  |     |\n"
-                  "  |     | \n"
-                  "  |     O \n"
-                  "  |      \n"
-                  "  |      \n"
-                  "__|__\n")
-            print("Wrong guess. " + str(limit-count) + " last guess remain. \n")
-
-        elif count == 5:
-            time.sleep(1)
-            print("   _____ \n"
-                  "  |     | \n"
-                  "  |     |\n"
-                  "  |     | \n"
-                  "  |     O \n"
-                  "  |    /|\ \n"
-                  "  |    / \ \n"
-                  "__|__\n")
-            print("Wrong guess. " + str(limit-count) + "guesses remain. \n" +
-                  "The word was: " + word_to_guess)
-            time.sleep(1)
+        if count == 5:
             play_loop()
 
     if word == '_'*length:
@@ -151,5 +146,5 @@ def hangman():
         hangman()
 
 
-#sys.modules[__name__].__dict__.clear()
+# sys.modules[__name__].__dict__.clear()
 play_loop()
