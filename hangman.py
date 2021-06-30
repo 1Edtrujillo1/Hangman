@@ -1,29 +1,25 @@
 # 0.0 Import modules ----
-
 import random
 import time
-# import sys
 
-# 1.0 Starting the game ----
 
-# 1.0 Functions with specific global arguments ----
-
-# 2.0 Loops to execute the program ----
-
-# 3.0 Run program passing the function ----
-
-# define global variables for the game.
-
+# 1.0  Define necessary functions ----
 
 def play_loop():
+    """When this function is run, the game will start iteratively.
+        Returns:
+        Iterative game until the user stop it.
+    """
 
-    play_game = input("Do You want to play? y = yes, n = no \n")
+    play_game = ""
+
+    input("Do You want to play?\n")
 
     while play_game not in ["y", "Y", "n", "N"]:
-        play_game = input("Do You want to play? y = yes, n = no \n")
+
+        play_game = input("y = yes, n = no \n")
 
         if play_game == "y":
-
             time.sleep(1)
             main()
             time.sleep(2)
@@ -34,6 +30,10 @@ def play_loop():
 
 
 def main():
+    """Define the starting necessary variables to play the game.
+        Returns:
+        Global Variables
+    """
 
     print("Welcome to Hangman game!")
     time.sleep(3)
@@ -53,6 +53,10 @@ def main():
 
 
 def hangman():
+    """When this function is runned the user will play the hangman game.
+        Returns:
+        An interactive hangman game
+    """
 
     global word, length, count, display, already_guessed, word_to_guess
 
@@ -146,5 +150,5 @@ def hangman():
         hangman()
 
 
-# sys.modules[__name__].__dict__.clear()
+# 2.0 Play the game ----
 play_loop()
